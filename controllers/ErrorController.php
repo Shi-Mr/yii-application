@@ -2,12 +2,11 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
+use app\components\BaseController;
 
-class ErrorController extends Controller {
+class ErrorController extends BaseController {
 
     public function actionError() {
-        $this->asJson(['code' => 1001, 'msg' => '访问页面不存在！']);
-        $this->response->send();
+
     }
 }

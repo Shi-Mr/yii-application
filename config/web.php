@@ -29,8 +29,7 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'rules' => [
-                '/' => 'index/index',
-                '<controller>' => '<controller>/index',
+                '/' => 'index',
                 '<controller>/<action>' => '<controller>/<action>'
             ],
         ],

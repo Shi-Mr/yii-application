@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
+use app\components\BaseController;
 
-class IndexController extends Controller {
+class IndexController extends BaseController {
 
     public function actionIndex() {
-        $this->asJson(['code' => 0, 'msg' => 'Hello World!']);
-        $this->response->send();
+        $this->success();
+
+        $this->error('213');
     }
 }
