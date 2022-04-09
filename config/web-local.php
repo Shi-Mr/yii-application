@@ -6,23 +6,6 @@ $params = array_merge(
 );
 
 $config = [
-    'components' => [
-        'request' => [
-            'class' => 'app\components\BaseRequest',
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'yQLYQPgfOi2e_J0tmQ5sTGTHehZjpapO',
-        ],
-        'response' => [
-            'class' => 'app\components\BaseResponse'
-        ],
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-        ],
-    ],
     'params' => $params
 ];
 

@@ -2,13 +2,15 @@
 
 namespace app\controllers;
 
-use app\components\BaseController;
+use app\components\RateLimitController;
 
-class IndexController extends BaseController {
+/**
+ * Demo
+ */
+class IndexController extends RateLimitController {
 
     public function actionIndex() {
-        $this->success();
 
-        $this->error('213');
+        return $this->api->success();
     }
 }

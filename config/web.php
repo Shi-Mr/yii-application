@@ -25,14 +25,6 @@ return [
                 ],
             ],
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => false,
-            'rules' => [
-                '/' => 'index',
-                '<controller>/<action>' => '<controller>/<action>'
-            ],
-        ],
         'errorHandler' => [
             'errorAction' => 'error/error',
         ]

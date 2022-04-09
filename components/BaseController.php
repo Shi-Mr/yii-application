@@ -2,35 +2,44 @@
 
 namespace app\components;
 
-use yii\web\Controller;
+use yii\web\Response;
+use yii\rest\Controller;
+use yii\filters\ContentNegotiator;
 
+/**
+ * 控制器基类
+ * 实现接口统一输出功能
+ */
 class BaseController extends Controller
 {
     /**
-     * 成功
+     * {@inheritdoc}
      */
-    public function success()
+    public function behaviors()
     {
-        $response = $this->asJson([
-            'code' => ApiResult::CODE_SUCCESS,
-            'msg' => ApiResult::$_aMsg[ApiResult::CODE_SUCCESS]]
-        );
-        $response->send();
+        $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator'] = [
+            'class' => ContentNegotiator::className(),
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
+            ]
+        ];
+
+        return $behaviors;
     }
 
     /**
-     * 错误
-     * @param $iCode
-     * @param $sMsg
+     * 统一输出器
      */
-    public function error($iCode, $sMsg = '') {
-        if (!in_array($iCode, ApiResult::$_aCode)) {
-            throw new \InvalidArgumentException("状态码未定义");
-        }
-        if (empty($sMsg)) {
-            $sMsg = ApiResult::$_aMsg[$iCode];
-        }
-        $response = $this->asJson(['code' => $iCode, 'msg' => $sMsg]);
-        $response->send();
+    public $api;
+
+    /**
+     * 实例化输出器
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->api = new ApiResult();
     }
 }
