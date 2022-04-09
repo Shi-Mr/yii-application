@@ -6,7 +6,7 @@ use yii\base\Component;
 use yii\base\Exception;
 
 /**
- * Desc 网络访问基础组件
+ * Desc 网络访问 组件
  * Class Http
  * @package app\components
  * @author shiqingsheng

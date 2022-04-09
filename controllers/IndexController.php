@@ -2,12 +2,9 @@
 
 namespace app\controllers;
 
-use app\components\RateLimitController;
+use app\components\RestController;
 
-/**
- * Demo
- */
-class IndexController extends RateLimitController {
+class IndexController extends RestController {
 
     public function actionIndex() {
 

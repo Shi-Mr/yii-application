@@ -8,7 +8,7 @@ use yii\base\Component;
 use yii\filters\RateLimitInterface;
 
 /**
- * 用户访问速率控制 过滤器
+ * 用户访问速率控制 组件
  */
 class RateLimitIdentify extends Component implements RateLimitInterface
 {
@@ -24,17 +24,17 @@ class RateLimitIdentify extends Component implements RateLimitInterface
      * 请求初始化：获取速率信息
      */
     public function getIdentity() {
-        $_ip = Yii::$app->request->getUserIP();
-        $this->_aRateLimit = ['allowance' => self::RATE_LIMIT, 'allowance_updated_at' => time(), 'ip' => $_ip];
+        $sIp = Yii::$app->request->getUserIP();
+        $this->_aRateLimit = ['allowance' => self::RATE_LIMIT, 'allowance_updated_at' => time(), 'ip' => $sIp];
         // TODO
         /**
          * 取存储信息
          * Redis操作：
-         * $this->_aRateLimit = Yii::$app->redis->get(md5($_ip));
+         * $this->_aRateLimit = Yii::$app->redis->get(md5($sIp));
          * if(!empty($this->_aRateLimit)) {
          *      $this->_aRateLimit = json_decode($this->_aRateLimit, true);
          * } else {
-         *      $this->_aRateLimit['ip'] = $_ip;
+         *      $this->_aRateLimit['ip'] = $sIp;
          * }
          */
 
@@ -85,8 +85,8 @@ class RateLimitIdentify extends Component implements RateLimitInterface
             /**
              * 保存速率信息
              * Redis操作：
-             * $_ip = Yii::$app->request->getUserIP();
-             * Yii::$app->redis->setex(md5($_ip), 3600*24*3, json_encode($this->_aRateLimit))
+             * $sIp = Yii::$app->request->getUserIP();
+             * Yii::$app->redis->setex(md5($sIp), 3600*24*3, json_encode($this->_aRateLimit))
              */
         } catch(Exception $e) {
             /**

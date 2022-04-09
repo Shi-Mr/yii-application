@@ -4,6 +4,9 @@ namespace app\components;
 
 use yii\base\InvalidParamException;
 
+/**
+ * 输出器 组件
+ */
 class ApiResult {
 
     /**
@@ -23,7 +26,7 @@ class ApiResult {
      */
     public static $_aMsg = [
         self::CODE_SUCCESS => 'OK',
-        self::CODE_SYSTEM => '无请求资源！'
+        self::CODE_SYSTEM => '请求资源错误！'
     ];
 
     /**
